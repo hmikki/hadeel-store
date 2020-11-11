@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products - RedStore </title>
+    <link rel="stylesheet" href="style.css"> 
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container">
+      <div class="navbar">
+          <div class="logo">
+            <a href="index.html"><img src="images/logo.png" width="125px"></a>
+        </div>
+        <nav>
+            <ul id="MenuItems">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product.html">Products</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Contact</a></li>
+                <li><a href="account.html">Account</a></li>
+            </ul>
+        </nav>
+        <a href="cart.html"><img src="images/cart.png" width="30px" height="30px"></a>
+        <img src="images/menu.png" class="menu-icon" onclick="menutoggle()">
+
+    </div>
+    
+</div>
+ <!---------single product details-------->
+  
+<div class="small-container single-product">
+    <div class="row">
+        <div class="col-2">
+            <img src="images/gallery-1.jpg" width="100%" id="ProductImg">
+            
+    <style type="text/css">
+        .ar-button {
+          position: absolute;
+          bottom: 0;
+          right: 100px;
+          height: 30px;
+          opacity: 0.75;
+        }
+      
+        #plattar-frame{
+          display: none;
+          position: absolute;
+          z-index: 11;
+          margin-right: 10px;
+          top: 180px;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: white;
+        }
+      
+        #plattar-frame.visible{
+              display: block;
+              width: 50%;
+              height: 80%;
+        }
+        .small-img{
+            position: absolute;
+            z-index: 999;
+        }
+      
+        #viewinar{
+          display: none;
+          position: absolute;
+          z-index: 11;
+          top: 180px;
+          background: white;
+          text-align: center;
+            width: 36%;
+            height: 90%;
+        }
+        #viewinar.visible{
+              display: block;
+        }
+        .small-img.visible{
+            display: block;
+            position: absolute;
+            z-index: 999;
+        }
+        /****** 3d and ar buttons **********/
+        #button3D{
+            right: 130px;
+            opacity: 1;
+            bottom: 75px;
+        }
+        #buttonAR{
+            right: 0px;
+            opacity: 1;
+            bottom: 40px;
+        }
+        #qrimage{
+            width: 200px;
+            max-height: 200px;
+        }
+        .hide{
+            display: none;
+            z-index: 0;
+        }
+        @media only screen and (max-width: 768px){
+            #button3D,
+            #buttonAR{
+                position: absolute;
+                bottom: 190px;
+                left: 30px;
+            }
+            #buttonAR{
+                bottom: 155px;
+            }
+            #plattar-frame.visible{
+                width: 93%;
+                height: 49%;
+            }
+            #viewinar{
+                top: 182px;
+                right: 90px;
+                left: 85px;
+            }
+            #qrimage{
+                width: 50px;
+                max-height: 50px;
+            }
+        }
+      </style>
+      <iframe id="plattar-frame" frameBorder="0" allow="camera; vr; autoplay" allowfullscreen></iframe>
+      <img onclick="startAR();" src="images/home.png" id="buttonAR" class="ar-button">
+      <img onclick="start360();" src="images/360.png" id="button3D" class="ar-button">
+      <div id="viewinar">
+          <h2 style="margin-top: 20px;">View at Home</h2>
+          <p>Open the camera app on your<br/>phone and scan this code</p>
+          <img id="qrimage" src="images/gr.png">
+          
+      </div>
+
+  <script src="https://app.plattar.com/webgleditor/embed/plattar-1.0.0.js"></script>
+  <script type="text/javascript">
+      var integration = new PlattarIntegration();
+      integration.init("77d04a30-2332-11eb-8bd5-a5c46d6575b3");
+
+      // integration.init("5fe63230-cfdd-11ea-bf8c-f7e3a6a3788d");
+      if (integration.canAugment) {
+       // show that AR is supported
+        document.getElementById("buttonAR").classList.add("visible");
+      } else{
+       // show that a 3d view will appear
+        document.getElementById("button3D").classList.add("visible");
+      }
+
+      function start360() {
+          var iframe = document.getElementById("plattar-frame");
+          iframe.src = integration.embedUrl;
+          iframe.classList.add("visible");
+  
+          var fram = document.getElementById("viewinar");
+          fram.classList.remove("visible");
+      }
+      function startAR() {
+        if (integration.canAugment) {
+          integration.startAugment(function(){
+            var qr = integration.qrUrl;
+            document.getElementById("qrimage").src = qr;
+                  var fram = document.getElementById("viewinar");
+                fram.classList.add("visible");
+          });
+        } else {
+        var qr = integration.qrUrl;
+          document.getElementById("qrimage").src = qr;
+          var fram = document.getElementById("viewinar");
+              fram.classList.add("visible");
+        }
+          var iframe = document.getElementById("plattar-frame");
+        iframe.classList.remove("visible");
+      }
+
+  </script>
+            <div class="small-img-row">
+                <div class="small-img-col">
+                   <a href="" class="redirect" onclick="stop1()">
+                       <img src="images/gallery-1.jpg" width="100%"  class="small-img">
+                   </a>
+                </div>
+                <div class="small-img-col">
+                    <a href="" class="redirect" onclick="stop1()">
+                    <img src="images/gallery-2.jpg" width="100%" class="small-img">
+                    </a>
+                 </div>
+                  <div class="small-img-col">
+                      <a href="" class="redirect" onclick="stop1()">
+                    <img src="images/gallery-3.jpg" width="100%" class="small-img">
+                      </a>
+                 </div> 
+                 <div class="small-img-col">
+                     <a href="" class="redirect" onclick="stop1()">
+                    <img src="images/gallery-4.jpg" width="100%" class="small-img">
+                     </a>
+                 </div>
+            </div>
+            <script>
+                function  stop1(){
+                    integration.stop();
+                    document.getElementById("viewinar").classList.remove("visible");
+                    document.getElementById("plattar-frame").classList.remove("visible");
+                    var attr = "index.html";
+                    document.getElementsByClassName("redirect").href= attr;
+                }
+            </script>
+        </div>
+        <div class="col-2">
+            <p>Home / T-Shirt</p>
+            <h1>Red Printed T-Shirt by HRX</h1>
+            <h4>$50.00</h4>
+            <select>
+                <option>Select size</option>
+                <option>XXL</option>
+                <option>XL</option>
+                <option>Large</option>
+                <option>Medium</option>
+                <option>Small</option>
+            </select>
+            <input type="number" value="1">
+            <a href="cart.html" class="btn">Add to cart</a>
+            <h3>Product details <i class="fa fa-indent"></i></h3>
+            <br>
+            <p>Success isn"t always about greatness. it"s about
+                consistency. Consistent<br> hard work gain success. Greatness 
+                will come. </p>
+        </div>
+
+    </div>
+</div>
+<!------title-------->
+<div class="small-container">
+    <div class="row row-2">
+        <h2>Related Products</h2>
+        <p>View More</p>
+    </div>
+</div>
+<!----products-->
+<div class="small-container">
+    
+    <div class="row">
+        <div class="col-4">
+            <img src="images/product-9.jpg" alt="">
+            <h4>Red Printed T-shirt</h4>
+            <div class="rating">
+                <i class="fa fa-star" ></i>
+                <i class="fa fa-star" ></i>
+                <i class="fa fa-star" ></i>
+                <i class="fa fa-star" ></i>
+                <i class="fa fa-star-o" ></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+        <div class="col-4">
+            <img src="images/product-10.jpg" alt="">
+            <h4>Red Printed T-shirt</h4>
+            <div class="rating">
+                <i class="fa fa-star" ></i>
+                <i class="fa fa-star" ></i>
+                <i class="fa fa-star" ></i>
+                <i class="fa fa-star" ></i>
+                <i class="fa fa-star-o" ></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+        <div class="col-4">
+            <img src="images/product-11.jpg" alt="">
+            <h4>Red Printed T-shirt</h4>
+            <div class="rating">
+                <i class="fa fa-star" ></i>
+                <i class="fa fa-star" ></i>
+                <i class="fa fa-star" ></i>
+                <i class="fa fa-star-half-o" ></i>
+                <i class="fa fa-star-half-o" ></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+        <div class="col-4">
+            <img src="images/product-12.jpg" alt="">
+            <h4>Red Printed T-shirt</h4>
+            <div class="rating">
+                <i class="fa fa-star" ></i>
+                <i class="fa fa-star" ></i>
+                <i class="fa fa-star" ></i>
+                <i class="fa fa-star" ></i>
+                <i class="fa fa-star-o" ></i>
+            </div>
+            <p>$50.00</p>
+        </div>
+    </div>
+   
+</div>
+ 
+
+<!-------- footer ---------->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download our app</h3>
+                    <p>Download App for Android and ios mobile phone</p>
+                    <div class="app-logo">
+                        <img src="images/play-store.png" alt="">
+                        <img src="images/app-store.png" alt="">
+
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="images/logo-white.png" alt="">
+                    <p>Our purpose is to sustainably make the pleasure and
+                        benefits of sports accessible to the many
+                    </p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful link</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Blog Post</li>
+                        <li>Return Policy</li>
+                        <li>Join Affiliate</li>
+
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>YouTube</li>
+
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <p class="Copyright">Copyright Eng.Hadeel Nijim</p>
+        </div>
+    </div>
+<!-------- js for toggle menu ---------->
+
+<script>
+    var MenuItems=document.getElementById("MenuItems");
+
+    MenuItems.style.maxHeight="0px";
+
+    function menutoggle(){
+        if( MenuItems.style.maxHeight=="0px"){
+    MenuItems.style.maxHeight="200px";
+            
+        }else{
+    MenuItems.style.maxHeight="0px";
+
+        }
+    }
+</script>
+<!-------- js for product gallary ---------->
+
+<script>
+    var ProductImg=document.getElementById("ProductImg");
+    var SmallImg=document.getElementsByClassName("small-img");
+ 
+    SmallImg[0].onclick=function(){
+        ProductImg.src= SmallImg[0].src;
+    } 
+    SmallImg[1].onclick=function(){
+        ProductImg.src= SmallImg[1].src;
+    }
+    SmallImg[2].onclick=function(){
+        ProductImg.src= SmallImg[2].src;
+    }  
+    SmallImg[3].onclick=function(){
+        ProductImg.src= SmallImg[3].src;
+    } 
+    
+</script>
+    
+</body>
+</html>
